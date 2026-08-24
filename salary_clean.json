@@ -1,0 +1,22 @@
+[
+    {
+        "salary_range": "20k-30k",
+        "count": 10
+    },
+    {
+        "salary_range": "30k-40k",
+        "count": 15
+    },
+    {
+        "salary_range": "40k-50k",
+        "count": 20
+    },
+    {
+        "salary_range": "50k-60k",
+        "count": 12
+    },
+    {
+        "salary_range": "60k-70k",
+        "count": 8
+    }
+]

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Salary Distribution</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .summary {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-box {
+            flex: 1;
+            background: #eff6ff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .summary-box h2 {
+            margin: 0;
+            color: #2563eb;
+            font-size: 28px;
+        }
+
+        .summary-box p {
+            margin: 8px 0 0;
+            color: #6b7280;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 450px;
+        }
+
+        .description {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9fafb;
+            border-left: 5px solid #2563eb;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .summary {
+                flex-direction: column;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Employee Salary Distribution</h1>
+
+        <p class="subtitle">
+            Salary distribution across employees
+        </p>
+
+        <div class="summary">
+
+            <div class="summary-box">
+                <h2>65</h2>
+                <p>Total Employees</p>
+            </div>
+
+            <div class="summary-box">
+                <h2>40k-50k</h2>
+                <p>Most Common Salary Range</p>
+            </div>
+
+        </div>
+
+        <div class="chart-container">
+            <canvas id="salaryChart"></canvas>
+        </div>
+
+        <div class="description">
+            <strong>Data Insight:</strong>
+            The 40k-50k salary range has the highest number of employees,
+            with 20 employees. The 60k-70k range has the lowest number,
+            with 8 employees.
+        </div>
+
+        <footer>
+            Employee Salary Distribution | Data Visualization
+        </footer>
+
+    </div>
+
+</div>
+
+<script>
+
+const salaryRanges = [
+    "20k-30k",
+    "30k-40k",
+    "40k-50k",
+    "50k-60k",
+    "60k-70k"
+];
+
+const employeeCounts = [
+    10,
+    15,
+    20,
+    12,
+    8
+];
+
+const ctx = document
+    .getElementById("salaryChart")
+    .getContext("2d");
+
+new Chart(ctx, {
+
+    type: "bar",
+
+    data: {
+
+        labels: salaryRanges,
+
+        datasets: [{
+
+            label: "Number of Employees",
+
+            data: employeeCounts,
+
+            backgroundColor: [
+                "#93c5fd",
+                "#60a5fa",
+                "#2563eb",
+                "#60a5fa",
+                "#93c5fd"
+            ],
+
+            borderColor: "#1d4ed8",
+
+            borderWidth: 1,
+
+            borderRadius: 6
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            legend: {
+                display: true
+            },
+
+            tooltip: {
+
+                callbacks: {
+
+                    label: function(context) {
+
+                        return " Employees: " + context.raw;
+
+                    }
+
+                }
+
+            }
+
+        },
+
+        scales: {
+
+            x: {
+
+                title: {
+                    display: true,
+                    text: "Salary Range"
+                }
+
+            },
+
+            y: {
+
+                beginAtZero: true,
+
+                ticks: {
+                    stepSize: 5
+                },
+
+                title: {
+                    display: true,
+                    text: "Number of Employees"
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
